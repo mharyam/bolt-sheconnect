@@ -26,7 +26,7 @@ export const HeroSection = (): JSX.Element => {
           </p>
 
           <Button 
-            className="mt-16 rounded-lg"
+            className="mt-16 rounded-full"
           >
             Explore All Archives
           </Button>
