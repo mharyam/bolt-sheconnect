@@ -25,7 +25,7 @@ export const HeroSection = (): JSX.Element => {
             And Waiting.
           </p>
 
-          <Button className="">
+          <Button className="mt-16">
             Explore All Archives
           </Button>
         </div>
