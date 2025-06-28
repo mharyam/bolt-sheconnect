@@ -38,7 +38,7 @@ export const ArchiveSearchSection = (): JSX.Element => {
   return (
     <section className="w-full py-12 bg-neutralneutral-1">
       <div className="max-w-[1360px] mx-auto px-10">
-        <div className="border-2 border-dashed border-blue-400 rounded-2xl p-8 bg-blue-50/30">
+        <div className="border-2 border-dashed rounded-2xl p-8 bg-blue-50/30">
           {/* Search Bar */}
           <div className="relative mb-6">
             <div className="relative">
