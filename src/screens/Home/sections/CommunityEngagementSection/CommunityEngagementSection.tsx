@@ -68,7 +68,7 @@ export const CommunityEngagementSection = (): JSX.Element => {
 
         <div className="w-3/5 flex justify-center">
           <img
-            className="w-full"
+            className="w-1/2"
             alt="Women community leaders illustration"
             src="/hero-picture.svg"
           />
