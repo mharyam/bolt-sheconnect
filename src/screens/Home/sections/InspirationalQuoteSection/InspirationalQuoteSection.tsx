@@ -49,7 +49,7 @@ export const InspirationalQuoteSection = (): JSX.Element => {
   const duplicatedItems = [...quoteItems, ...quoteItems];
 
   return (
-    <section className="w-full bg-neutral-800 overflow-hidden mt-16">
+    <section className="w-full bg-neutral-800 py-6 overflow-hidden mt-16">
       <div className="flex items-center gap-8 animate-marquee whitespace-nowrap">
         {duplicatedItems.map((item, index) => (
           <React.Fragment key={`quote-item-${index}`}>
@@ -58,7 +58,7 @@ export const InspirationalQuoteSection = (): JSX.Element => {
               alt={item.image.alt}
               src={item.image.src}
             />
-            <span className="[font-family:'Lastik-Regular',Helvetica] font-normal text-[#f6e6d3] text-5xl text-center tracking-[-1.92px] leading-[57.6px] whitespace-nowrap">
+            <span className="[font-family:'Lastik-Regular',Helvetica] font-normal text-[#f6e6d3] textl text-center tracking-[-1.92px] leading-[57.6px] whitespace-nowrap">
               {item.quote}
             </span>
           </React.Fragment>
