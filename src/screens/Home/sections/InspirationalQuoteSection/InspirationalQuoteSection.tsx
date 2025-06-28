@@ -29,7 +29,7 @@ export const InspirationalQuoteSection = (): JSX.Element => {
     },
     {
       image: {
-        src: "https://images.pexels.com/photos/1263986/pexels-photo-1263986.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+        src: "/butterfly-1.svg",
         alt: "Decorative flower",
         className: "w-[70px] h-[63px] object-cover rounded-lg",
       },
