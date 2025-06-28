@@ -63,7 +63,7 @@ export const ArchiveSearchSection = (): JSX.Element => {
               <select
                 value={selectedRecommend}
                 onChange={(e) => setSelectedRecommend(e.target.value)}
-                className="appearance-none bg-white border border-neutral-300 rounded-lg px-4 py-3 pr-10 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent cursor-pointer min-w-[140px]"
+                className="appearance-none bg-white border border-neutral-300 rounded-lg px-4 py-3 pr-10 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent cursor-pointer min-w-[140px] rounded-full"
               >
                 <option value="">Recommend</option>
                 {recommendOptions.map((option) => (
