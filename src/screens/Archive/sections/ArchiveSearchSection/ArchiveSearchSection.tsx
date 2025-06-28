@@ -36,7 +36,7 @@ export const ArchiveSearchSection = (): JSX.Element => {
   ];
 
   return (
-    <section className="w-full py-12 >
+    <section className="w-full py-12 ">
       <div className="max-w-[1360px] mx-auto px-10">
         <div className="border-2 border-dashed border-blue-300 rounded-2xl p-8 bg-blue-50/30">
           {/* Search Bar */}
