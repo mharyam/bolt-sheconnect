@@ -1,0 +1,66 @@
+import React from "react";
+
+export const InspirationalQuoteSection = (): JSX.Element => {
+  // Define the quotes and images data for easier mapping
+  const quoteItems = [
+    {
+      image: {
+        src: "https://images.pexels.com/photos/1263986/pexels-photo-1263986.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+        alt: "Decorative flower",
+        className: "w-[46px] h-[67px] object-cover rounded-lg",
+      },
+      quote: "Where Women Connect, Learn, And Thrive",
+    },
+    {
+      image: {
+        src: "https://images.pexels.com/photos/1263986/pexels-photo-1263986.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+        alt: "Decorative flower",
+        className: "w-[70px] h-[63px] object-cover rounded-lg",
+      },
+      quote: "Your Community Is Here.",
+    },
+    {
+      image: {
+        src: "https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+        alt: "Butterfly",
+        className: "w-[77px] h-[79px] object-cover rounded-lg",
+      },
+      quote: "Find Your Wings",
+    },
+    {
+      image: {
+        src: "https://images.pexels.com/photos/1263986/pexels-photo-1263986.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+        alt: "Decorative flower",
+        className: "w-[70px] h-[63px] object-cover rounded-lg",
+      },
+      quote: "Where Women Connect, Learn, And Thrive",
+    },
+    {
+      image: {
+        src: "https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+        alt: "Butterfly",
+        className: "w-[77px] h-[79px] object-cover rounded-lg",
+      },
+      quote: "Find Your Wings",
+    },
+  ];
+
+  return (
+    <section className="w-full bg-neutral-800 py-6 overflow-hidden">
+      <div className="flex items-center justify-center gap-8 animate-marquee">
+        {quoteItems.map((item, index) => (
+          <React.Fragment key={`quote-item-${index}`}>
+            <img
+              className={item.image.className}
+              alt={item.image.alt}
+              src={item.image.src}
+            />
+            <span className="[font-family:'Lastik-Regular',Helvetica] font-normal text-[#f6e6d3] text-5xl text-center tracking-[-1.92px] leading-[57.6px] whitespace-nowrap">
+              {item.quote}
+            </span>
+          </React.Fragment>
+        ))}
+      </div>
+    </section>
+  );
+};
