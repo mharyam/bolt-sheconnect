@@ -4,7 +4,6 @@ export const FooterSection = (): JSX.Element => {
   return (
     <footer className="w-full h-[190px] bg-white">
       <div className="max-w-[1360px] mx-auto flex items-end justify-between py-16 px-10">
-        <div className="w-[114px] h-[41px] bg-mata-50 rounded flex items-center justify-center">
           <img 
             src="/mata-connect-logo.svg" 
             alt="MATA CONNECT" 
