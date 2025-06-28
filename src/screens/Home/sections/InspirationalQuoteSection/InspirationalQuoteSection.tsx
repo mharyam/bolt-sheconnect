@@ -37,7 +37,7 @@ export const InspirationalQuoteSection = (): JSX.Element => {
     },
     {
       image: {
-        src: "https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+        src: "/peony-arrangement.svg",
         alt: "Butterfly",
         className: "w-[77px] h-[79px] object-cover rounded-lg",
       },
