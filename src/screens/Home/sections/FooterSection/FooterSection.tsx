@@ -13,9 +13,6 @@ export const FooterSection = (): JSX.Element => {
         </div>
 
         <div className="flex flex-col items-end gap-4">
-          <p className="font-['Geist',Helvetica] font-normal text-neutralneutral-11 text-[10px] tracking-[-0.40px]">
-            DESIGNED & DIRECTED&nbsp;&nbsp;BY @AHRUF
-          </p>
 
           <p className="font-['Geist',Helvetica] font-normal text-neutralneutral-11 text-[10px] tracking-[-0.40px]">
             © MATA CONNECT 2025. ALL RIGHTS RESERVED ®
