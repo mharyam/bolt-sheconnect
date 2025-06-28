@@ -8,11 +8,6 @@ export const ArchiveHeroSection = (): JSX.Element => {
           <h1 className="[font-family:'Lastik-Regular',Helvetica] font-normal text-neutral-800 text-[64px] tracking-[-2.56px] leading-[76.8px] mb-6">
             Archive
           </h1>
-          <p className="[font-family:'Geist',Helvetica] font-normal text-neutral-800 text-base tracking-[-0.32px] leading-6 max-w-2xl">
-            Discover and connect with women-led communities across the globe. 
-            Browse through our comprehensive archive of communities organized by category, 
-            location, and focus area.
-          </p>
         </div>
       </div>
     </section>
