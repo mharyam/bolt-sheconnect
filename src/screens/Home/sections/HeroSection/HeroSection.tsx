@@ -26,12 +26,9 @@ export const HeroSection = (): JSX.Element => {
           </p>
 
           <Button 
-            variant="figma" 
-            size="figma"
             className="mt-16"
             style={{
-              borderRadius: "124px 124px 0px 0px",
-              background: "var(--neutralneutral-1, #FFF)"
+              borderRadius: "124px 124px 0px 0px"
             }}
           >
             Explore All Archives
