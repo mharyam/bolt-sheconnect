@@ -73,7 +73,6 @@ export const AboutCommunitySection = (): JSX.Element => {
             >
               hello@mataconnect.com
             </a>
-            <span className="hidden sm:block text-neutral-400">|</span>
           </div>
         </div>
       </div>
