@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Button } from "../../../../components/ui/button";
+import { CommunityModal } from "../../../../components/CommunityModal";
+
+interface Community {
+  name: string;
+  category: string;
+  description: string;
+  location: string;
+  website: string;
+  image: string;
+  members: string;
+}
 
 export const ArchiveGridSection = (): JSX.Element => {
-  const communities = [
+  const [selectedCommunity, setSelectedCommunity] = useState<Community | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const communities: Community[] = [
     {
       name: "BLACK WOMEN IN TECH",
       category: "TECH",
@@ -87,6 +101,16 @@ export const ArchiveGridSection = (): JSX.Element => {
     }
   ];
 
+  const handleViewCommunity = (community: Community) => {
+    setSelectedCommunity(community);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedCommunity(null);
+  };
+
   return (
     <section className="w-full py-16 bg-neutralneutral-1">
       <div className="max-w-[1360px] mx-auto px-10">
@@ -123,15 +147,24 @@ export const ArchiveGridSection = (): JSX.Element => {
                   <span>{community.website}</span>
                 </div>
                 
-                <Button className="w-full bg-neutral-800 hover:bg-neutral-700 text-white rounded-full">
+                <Button 
+                  className="w-full bg-neutral-800 hover:bg-neutral-700 text-white rounded-full"
+                  onClick={() => handleViewCommunity(community)}
+                >
                   View Community
                 </Button>
               </CardContent>
             </Card>
           ))}
         </div>
-        
       </div>
+
+      {/* Community Modal */}
+      <CommunityModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        community={selectedCommunity}
+      />
     </section>
   );
 };
