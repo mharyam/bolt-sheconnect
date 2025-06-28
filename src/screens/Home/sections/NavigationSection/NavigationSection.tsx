@@ -15,7 +15,7 @@ export const NavigationSection = (): JSX.Element => {
 
   const rightNavItems = [
     { label: "SUBMIT", path: "/submit", isLink: true },
-    { label: "ABOUT", path: "#", isLink: false },
+    { label: "ABOUT", path: "/about", isLink: true },
   ];
 
   return (

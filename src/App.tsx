@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Home } from "./screens/Home";
 import { Archive } from "./screens/Archive";
 import { Submit } from "./screens/Submit";
+import { About } from "./screens/About";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/submit",
     element: <Submit />,
+  },
+  {
+    path: "/about",
+    element: <About />,
   },
   {
     path: "/*",
