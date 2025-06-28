@@ -1,7 +1,7 @@
 import React from "react";
 
 export const InspirationalQuoteSection = (): JSX.Element => {
-  // Define the quotes and images data for easier mapping
+  // Define the quotes and images data for the marquee
   const quoteItems = [
     {
       image: {
@@ -45,10 +45,13 @@ export const InspirationalQuoteSection = (): JSX.Element => {
     },
   ];
 
+  // Duplicate the items to create seamless loop
+  const duplicatedItems = [...quoteItems, ...quoteItems];
+
   return (
     <section className="w-full bg-neutral-800 py-6 overflow-hidden">
-      <div className="flex items-center justify-center gap-8 animate-marquee">
-        {quoteItems.map((item, index) => (
+      <div className="flex items-center gap-8 animate-marquee whitespace-nowrap">
+        {duplicatedItems.map((item, index) => (
           <React.Fragment key={`quote-item-${index}`}>
             <img
               className={item.image.className}
