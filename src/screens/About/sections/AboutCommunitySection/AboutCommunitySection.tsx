@@ -30,9 +30,6 @@ export const AboutCommunitySection = (): JSX.Element => {
   return (
     <section className="w-full py-20 bg-neutralneutral-1">
       <div className="max-w-[1360px] mx-auto px-10">
-        {/* Values Section */}
-        <div className="mb-20">
-        </div>
 
         {/* Call to Action */}
         <Card className="bg-neutral-800 border-0 rounded-3xl overflow-hidden">
