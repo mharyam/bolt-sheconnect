@@ -58,9 +58,7 @@ export const InspirationalQuoteSection = (): JSX.Element => {
               alt={item.image.alt}
               src={item.image.src}
             />
-            <span className="[font-family:'Lastik-Regular',Helvetica] font-normal text-[#f6e6d3] text-lg
-
- text-center tracking-[-1.92px] leading-[57.6px] whitespace-nowrap">
+            <span className="[font-family:'Lastik-Regular',Helvetica] font-normal text-[#f6e6d3] text-lg text-center tracking-[-1.92px] leading-[57.6px] whitespace-nowrap">
               {item.quote}
             </span>
           </React.Fragment>
