@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 
@@ -25,11 +26,13 @@ export const HeroSection = (): JSX.Element => {
             And Waiting.
           </p>
 
-          <Button 
-            className="mt-8 rounded-full"
-          >
-            Explore All Archives
-          </Button>
+          <Link to="/archive">
+            <Button 
+              className="mt-8 rounded-full"
+            >
+              Explore All Archives
+            </Button>
+          </Link>
         </div>
       </CardContent>
     </Card>

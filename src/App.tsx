@@ -2,6 +2,7 @@ import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Home } from "./screens/Home";
 import { Archive } from "./screens/Archive";
+import { Submit } from "./screens/Submit";
 
 const router = createBrowserRouter([
   {
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
   {
     path: "/archive",
     element: <Archive />,
+  },
+  {
+    path: "/submit",
+    element: <Submit />,
   },
   {
     path: "/*",

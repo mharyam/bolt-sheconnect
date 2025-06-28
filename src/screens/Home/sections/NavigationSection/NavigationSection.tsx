@@ -14,7 +14,7 @@ export const NavigationSection = (): JSX.Element => {
   ];
 
   const rightNavItems = [
-    { label: "SUBMIT", path: "#", isLink: false },
+    { label: "SUBMIT", path: "/submit", isLink: true },
     { label: "ABOUT", path: "#", isLink: false },
   ];
 
@@ -54,9 +54,18 @@ export const NavigationSection = (): JSX.Element => {
           <NavigationMenuList className="flex items-center gap-1">
             {rightNavItems.map((item, index) => (
               <NavigationMenuItem key={`right-nav-${index}`}>
-                <div className="px-4 py-[9px] [font-family:'Geist',Helvetica] font-normal text-neutral-800 text-xs tracking-[-0.48px]">
-                  {item.label}
-                </div>
+                {item.isLink ? (
+                  <Link
+                    to={item.path}
+                    className="px-4 py-[9px] [font-family:'Geist',Helvetica] font-normal text-neutral-800 text-xs tracking-[-0.48px] hover:text-neutral-600 transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <div className="px-4 py-[9px] [font-family:'Geist',Helvetica] font-normal text-neutral-800 text-xs tracking-[-0.48px]">
+                    {item.label}
+                  </div>
+                )}
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
