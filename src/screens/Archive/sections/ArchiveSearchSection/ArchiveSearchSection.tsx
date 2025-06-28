@@ -84,7 +84,7 @@ export const ArchiveSearchSection = (): JSX.Element => {
               <select
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
-                className="appearance-none bg-white border border-neutral-300 rounded-full px-6 pr-12 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent cursor-pointer min-w-[160px]"
+                className="appearance-none bg-white border border-neutral-300 rounded-full px-6 py-2 pr-12 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent cursor-pointer min-w-[160px]"
               >
                 <option value="">Location</option>
                 {locationOptions.map((option) => (
