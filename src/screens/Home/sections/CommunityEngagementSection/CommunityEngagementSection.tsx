@@ -40,7 +40,7 @@ export const CommunityEngagementSection = (): JSX.Element => {
       <div className="container flex flex-row justify-between items-center gap-10">
         <Card className="w-[416px] rounded-2xl overflow-hidden bg-neutral-800 border-0">
           <div className="flex justify-center pt-7">
-            <div className="bg-red-50 w-[113px] h-[41px] bg-mata-50 rounded flex items-center justify-center">
+            <div className="w-[113px] h-[41px] bg-mata-50 rounded flex items-center justify-center">
               <img 
                 src="/mata-connect-logo.svg" 
                 alt="MATA CONNECT" 
