@@ -74,12 +74,6 @@ export const AboutCommunitySection = (): JSX.Element => {
               hello@mataconnect.com
             </a>
             <span className="hidden sm:block text-neutral-400">|</span>
-            <a 
-              href="tel:+1234567890"
-              className="[font-family:'Geist',Helvetica] font-semibold text-neutral-800 hover:text-neutral-600 transition-colors duration-300"
-            >
-              +1 (234) 567-8900
-            </a>
           </div>
         </div>
       </div>
