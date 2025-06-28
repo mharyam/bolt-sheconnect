@@ -42,14 +42,14 @@ export const AboutCommunitySection = (): JSX.Element => {
               Your journey to meaningful connections starts here.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link to="/archive">
-                <Button className="bg-mata-50 text-neutral-800 hover:bg-mata-50 rounded-full px-8 py-3 font-semibold text-base">
+                <Button className="bg-mata-50 text-neutral-800 hover:bg-mata-50 rounded-full px-12 py-5 font-semibold text-lg min-w-[220px] h-[60px]">
                   Explore Communities
                 </Button>
               </Link>
               <Link to="/submit">
-                <Button variant="outline" className="border-2 border-mata-50 text-mata-50 hover:bg-mata-50 hover:text-neutral-800 rounded-full px-8 py-3 font-semibold text-base">
+                <Button variant="outline" className="border-2 border-mata-50 text-mata-50 hover:bg-mata-50 hover:text-neutral-800 rounded-full px-12 py-5 font-semibold text-lg min-w-[220px] h-[60px]">
                   Submit Your Community
                 </Button>
               </Link>
