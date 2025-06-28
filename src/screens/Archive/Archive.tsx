@@ -9,7 +9,7 @@ import { ArchiveGridSection } from "./sections/ArchiveGridSection";
 export const Archive = (): JSX.Element => {
   return (
     <div className="flex flex-col w-full relative bg-neutralneutral-1 overflow-hidden">
-
+      <ArchiveSearchSection />
       <ArchiveFilterSection />
       <ArchiveGridSection />
       <FooterSection />
