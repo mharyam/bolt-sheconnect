@@ -15,7 +15,8 @@ export const HeroSection = (): JSX.Element => {
           />
 
           <h1 className="mt-4 [font-family:'Lastik-Regular',Helvetica] font-normal text-neutral-800 text-[64px] text-center tracking-[-2.56px] leading-[76.8px]">
-Submit your(a) group and help more women connect, grow, and thrive.
+            Ladies Wander No more—Find
+Your Perfect Community. 
           </h1>
 
           <p className="mt-4 [font-family:'Geist',Helvetica] font-normal text-neutral-800 text-base text-center tracking-[-0.32px] leading-6">
