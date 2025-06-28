@@ -29,17 +29,6 @@ export const AboutCommunitySection = (): JSX.Element => {
 
   return (
     <section className="w-full py-20 bg-neutralneutral-1">
-      <div className="max-w-[1360px] mx-auto px-10">
-        {/* Values Section */}
-        <div className="mb-20">
-          <div className="text-center mb-16">
-            <h2 className="[font-family:'Lastik-Regular',Helvetica] font-normal text-neutral-800 text-5xl tracking-[-2px] leading-tight mb-6">
-              Our Values
-            </h2>
-            <p className="[font-family:'Geist',Helvetica] font-normal text-neutral-600 text-lg leading-relaxed max-w-2xl mx-auto">
-              These core principles guide everything we do and shape how we build connections within our community.
-            </p>
-          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
