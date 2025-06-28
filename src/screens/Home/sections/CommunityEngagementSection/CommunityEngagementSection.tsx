@@ -37,7 +37,7 @@ export const CommunityEngagementSection = (): JSX.Element => {
 
   return (
     <section className="relative w-full py-14 bg-neutralneutral-1 overflow-hidden flex flex-row justify-center items-center">
-      <div className="container flex flex-row justify-between items-center gap-10">
+      <div className="container flex flex-row justify-between items-center gap-20">
         <div className="w-2/5 flex justify-center">
           <Card className="w-full max-w-[416px] rounded-2xl overflow-hidden bg-neutral-800 border-0">
             <div className="flex justify-center pt-7">
