@@ -56,7 +56,6 @@ export const AboutCommunitySection = (): JSX.Element => {
             </div>
           </CardContent>
         </Card>
-
       </div>
     </section>
   );
