@@ -47,7 +47,7 @@ export const ArchiveSearchSection = (): JSX.Element => {
                 placeholder="Ask anything"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-14 pl-6 pr-40 rounded-full border  bg-white text-neutral-800 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent text-base"
+                className="w-full h-14 pl-6 pr-40 rounded-full border bg-white text-neutral-800 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent text-base"
               />
               <Button className="absolute right-2 top-2 h-10 px-6 bg-neutral-800 hover:bg-neutral-700 text-white rounded-full text-sm font-medium">
                 <Search className="w-4 h-4 mr-2" />
