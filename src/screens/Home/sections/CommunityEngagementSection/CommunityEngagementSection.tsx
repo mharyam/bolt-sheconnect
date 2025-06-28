@@ -38,36 +38,37 @@ export const CommunityEngagementSection = (): JSX.Element => {
   return (
     <section className="relative w-full py-14 bg-neutralneutral-1 overflow-hidden flex flex-row justify-center items-center">
       <div className="container flex flex-row justify-between items-center gap-10">
-        <Card className="w-[416px] rounded-2xl overflow-hidden bg-neutral-800 border-0">
-          <div className="flex justify-center pt-7">
-<div className="w-[114px] h-[41px] bg-white rounded flex items-center justify-center rounded-full">
-          <img 
-            src="/mata-connect-logo.svg" 
-            alt="MATA CONNECT" 
-            className="h-6 w-auto"
-          />
+        <div className="w-2/5 flex justify-center">
+          <Card className="w-full max-w-[416px] rounded-2xl overflow-hidden bg-neutral-800 border-0">
+            <div className="flex justify-center pt-7">
+              <div className="w-[114px] h-[41px] bg-white rounded flex items-center justify-center rounded-full">
+                <img 
+                  src="/mata-connect-logo.svg" 
+                  alt="MATA CONNECT" 
+                  className="h-6 w-auto"
+                />
+              </div>
+            </div>
+            <CardContent className="p-0 mt-6">
+              {communityStats.map((stat, index) => (
+                <div
+                  key={`stat-${index}`}
+                  className={`w-full h-[53px] ${stat.bgColor} flex items-center justify-center`}
+                >
+                  <div
+                    className={`font-normal ${stat.textColor} text-xs tracking-[0.24px] leading-5`}
+                  >
+                    {stat.text}
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
         </div>
 
-          </div>
-          <CardContent className="p-0 mt-6">
-            {communityStats.map((stat, index) => (
-              <div
-                key={`stat-${index}`}
-                className={`w-full h-[53px] ${stat.bgColor} flex items-center justify-center`}
-              >
-                <div
-                  className={`font-normal ${stat.textColor} text-xs tracking-[0.24px] leading-5`}
-                >
-                  {stat.text}
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-
-        <div className="flex-1 flex justify-center">
+        <div className="w-3/5 flex justify-center">
           <img
-            className="w-[788px] h-[525px] object-cover rounded-2xl"
+            className="w-full max-w-[788px] h-[525px] object-cover rounded-2xl"
             alt="Women community leaders illustration"
             src="/hero-picture.svg"
           />
