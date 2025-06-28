@@ -57,16 +57,6 @@ export const AboutCommunitySection = (): JSX.Element => {
           </CardContent>
         </Card>
 
-        {/* Contact Section */}
-        <div className="mt-20 text-center">
-          <h3 className="[font-family:'Lastik-Regular',Helvetica] font-normal text-neutral-800 text-3xl tracking-[-1px] leading-tight mb-6">
-            Get in Touch
-          </h3>
-          <p className="[font-family:'Geist',Helvetica] font-normal text-neutral-600 text-lg leading-relaxed mb-8 max-w-xl mx-auto">
-            Have questions, suggestions, or want to partner with us? We'd love to hear from you.
-          </p>
-          
-        </div>
       </div>
     </section>
   );
