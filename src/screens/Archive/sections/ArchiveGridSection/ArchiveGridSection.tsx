@@ -131,11 +131,6 @@ export const ArchiveGridSection = (): JSX.Element => {
           ))}
         </div>
         
-        <div className="flex justify-center mt-12">
-          <Button variant="outline" className="px-8 py-3 rounded-full border-neutral-300 text-neutral-800 hover:bg-neutral-50">
-            Load More Communities
-          </Button>
-        </div>
       </div>
     </section>
   );
