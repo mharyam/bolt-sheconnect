@@ -15,63 +15,54 @@ export const CommunityHighlightSection = (): JSX.Element => {
       name: "BLACK WOMEN IN TECH",
       category: "#TECH",
       description: "AN OPEN SOURCE MACHINE LEARNING FRAMEWORK FOR EVERYONE",
-      location: "ABUJA, NIGERIA",
       website: "WWW.BLACKWOMENTECH .COM",
     },
     {
       name: "LADIES THAT UX",
       category: "#UI/UX",
       description: "AN OPEN SOURCE MACHINE LEARNING FRAMEWORK FOR EVERYONE",
-      location: "ABUJA, NIGERIA",
       website: "WWW.LADIESTHATUX .COM",
     },
     {
       name: "SHE CODES",
       category: "#CODING",
       description: "AN OPEN SOURCE MACHINE LEARNING FRAMEWORK FOR EVERYONE",
-      location: "ABUJA, NIGERIA",
       website: "WWW.SHECODES .COM",
     },
     {
       name: "BLOOD + MILK",
       category: "#HEALTH",
       description: "AN OPEN SOURCE MACHINE LEARNING FRAMEWORK FOR EVERYONE",
-      location: "ABUJA, NIGERIA",
       website: "WWW.BLOODANDMILK .COM",
     },
     {
       name: "WOMEN WHO TECH",
       category: "#TECH",
       description: "AN OPEN SOURCE MACHINE LEARNING FRAMEWORK FOR EVERYONE",
-      location: "ABUJA, NIGERIA",
       website: "WWW.WOMENWHOTECH .COM",
     },
     {
       name: "TECHIONISTA",
       category: "#TECH",
       description: "AN OPEN SOURCE MACHINE LEARNING FRAMEWORK FOR EVERYONE",
-      location: "ABUJA, NIGERIA",
       website: "WWW.TECHIONISTA .COM",
     },
     {
       name: "RIGHTBRAINS",
       category: "#HEALTH",
       description: "AN OPEN SOURCE MACHINE LEARNING FRAMEWORK FOR EVERYONE",
-      location: "ABUJA, NIGERIA",
       website: "WWW.RIGHTBRAINS .COM",
     },
     {
       name: "RIGHTBRAINS",
       category: "#HEALTH",
       description: "AN OPEN SOURCE MACHINE LEARNING FRAMEWORK FOR EVERYONE",
-      location: "ABUJA, NIGERIA",
       website: "WWW.RIGHTBRAINS .COM",
     },
     {
       name: "MUSIM SISTER'S CONNECT",
       category: "#TECH",
       description: "AN OPEN SOURCE MACHINE LEARNING FRAMEWORK FOR EVERYONE",
-      location: "ABUJA, NIGERIA",
       website: "WWW.MUSLIMSISTERSCONECT .COM",
     },
   ];
@@ -89,9 +80,6 @@ export const CommunityHighlightSection = (): JSX.Element => {
             </TableHead>
             <TableHead className="w-[350px] py-5 text-left [font-family:'Geist',Helvetica] font-bold text-neutral-800 text-base tracking-[-0.64px]">
               DESCRIPTION
-            </TableHead>
-            <TableHead className="w-[200px] py-5 text-left [font-family:'Geist',Helvetica] font-bold text-neutral-800 text-base tracking-[-0.64px]">
-              LOCATION
             </TableHead>
             <TableHead className="w-[300px] py-5 text-left [font-family:'Geist',Helvetica] font-bold text-neutral-800 text-base tracking-[0.32px] leading-5">
               WEBSITE
@@ -112,9 +100,6 @@ export const CommunityHighlightSection = (): JSX.Element => {
               </TableCell>
               <TableCell className="py-5 w-[350px] text-left [font-family:'Geist',Helvetica] font-normal text-neutral-800 text-sm tracking-[0.28px] leading-5">
                 {community.description}
-              </TableCell>
-              <TableCell className="py-5 w-[200px] text-left [font-family:'Geist',Helvetica] font-normal text-neutral-800 text-sm tracking-[0.28px] leading-5">
-                {community.location}
               </TableCell>
               <TableCell className="py-5 w-[300px] text-left [font-family:'Geist',Helvetica] font-normal text-neutral-800 text-sm tracking-[0.28px] leading-5">
                 {community.website}
