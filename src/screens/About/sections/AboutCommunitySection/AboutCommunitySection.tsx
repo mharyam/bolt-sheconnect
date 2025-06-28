@@ -33,19 +33,6 @@ export const AboutCommunitySection = (): JSX.Element => {
         {/* Values Section */}
         <div className="mb-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <Card key={`value-${index}`} className="border border-neutral-200 text-center hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-8">
-                  <div className="text-4xl mb-4">{value.icon}</div>
-                  <h3 className="[font-family:'Geist',Helvetica] font-bold text-neutral-800 text-xl mb-4">
-                    {value.title}
-                  </h3>
-                  <p className="[font-family:'Geist',Helvetica] font-normal text-neutral-600 text-sm leading-relaxed">
-                    {value.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </div>
 
