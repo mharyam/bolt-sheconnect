@@ -25,7 +25,15 @@ export const HeroSection = (): JSX.Element => {
             And Waiting.
           </p>
 
-          <Button className="mt-16">
+          <Button 
+            variant="figma" 
+            size="figma"
+            className="mt-16"
+            style={{
+              borderRadius: "124px 124px 0px 0px",
+              background: "var(--neutralneutral-1, #FFF)"
+            }}
+          >
             Explore All Archives
           </Button>
         </div>
