@@ -66,8 +66,6 @@ export const AboutCommunitySection = (): JSX.Element => {
             Have questions, suggestions, or want to partner with us? We'd love to hear from you.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          </div>
         </div>
       </div>
     </section>
