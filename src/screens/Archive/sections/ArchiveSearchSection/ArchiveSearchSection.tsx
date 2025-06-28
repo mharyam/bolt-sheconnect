@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Search } from "lucide-react";
 import { Button } from "../../../../components/ui/button";
+import { FilterState } from "../../Archive";
 
-export const ArchiveSearchSection = (): JSX.Element => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedRecommend, setSelectedRecommend] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+interface ArchiveSearchSectionProps {
+  filters: FilterState;
+  onFiltersChange: (filters: Partial<FilterState>) => void;
+}
 
+export const ArchiveSearchSection = ({ filters, onFiltersChange }: ArchiveSearchSectionProps): JSX.Element => {
   const recommendOptions = [
     "Most Popular",
-    "Newest",
+    "Newest", 
     "Most Active",
     "Alphabetical"
   ];
@@ -32,8 +33,14 @@ export const ArchiveSearchSection = (): JSX.Element => {
     "Health",
     "Business",
     "Education",
-    "Arts"
+    "Arts",
+    "Community"
   ];
+
+  const handleSearch = () => {
+    // Search functionality is handled by the parent component through filters
+    console.log("Searching with query:", filters.searchQuery);
+  };
 
   return (
     <section className="w-full py-12 bg-neutralneutral-1">
@@ -45,11 +52,15 @@ export const ArchiveSearchSection = (): JSX.Element => {
               <input
                 type="text"
                 placeholder="Ask anything"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                value={filters.searchQuery}
+                onChange={(e) => onFiltersChange({ searchQuery: e.target.value })}
                 className="w-full h-14 pl-6 pr-40 rounded-full border border-neutral-300 bg-white text-neutral-800 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent text-base"
+                onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
               />
-              <Button className="absolute right-2 top-2 h-10 px-6 bg-neutral-800 hover:bg-neutral-700 text-white rounded-full text-sm font-medium">
+              <Button 
+                className="absolute right-2 top-2 h-10 px-6 bg-neutral-800 hover:bg-neutral-700 text-white rounded-full text-sm font-medium"
+                onClick={handleSearch}
+              >
                 <Search className="w-4 h-4 mr-2" />
                 ASK MataConnect
               </Button>
@@ -61,8 +72,8 @@ export const ArchiveSearchSection = (): JSX.Element => {
             {/* Recommend Dropdown */}
             <div className="relative">
               <select
-                value={selectedRecommend}
-                onChange={(e) => setSelectedRecommend(e.target.value)}
+                value={filters.selectedRecommend}
+                onChange={(e) => onFiltersChange({ selectedRecommend: e.target.value })}
                 className="appearance-none bg-white border border-neutral-300 rounded-full px-6 py-3 pr-12 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent cursor-pointer min-w-[180px]"
               >
                 <option value="">Recommend</option>
@@ -82,8 +93,8 @@ export const ArchiveSearchSection = (): JSX.Element => {
             {/* Location Dropdown */}
             <div className="relative">
               <select
-                value={selectedLocation}
-                onChange={(e) => setSelectedLocation(e.target.value)}
+                value={filters.selectedLocation}
+                onChange={(e) => onFiltersChange({ selectedLocation: e.target.value })}
                 className="appearance-none bg-white border border-neutral-300 rounded-full px-6 py-3 pr-12 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent cursor-pointer min-w-[160px]"
               >
                 <option value="">Location</option>
@@ -103,8 +114,8 @@ export const ArchiveSearchSection = (): JSX.Element => {
             {/* Categories Dropdown */}
             <div className="relative">
               <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
+                value={filters.selectedCategory}
+                onChange={(e) => onFiltersChange({ selectedCategory: e.target.value })}
                 className="appearance-none bg-white border border-neutral-300 rounded-full px-6 py-3 pr-12 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent cursor-pointer min-w-[170px]"
               >
                 <option value="">Categories</option>

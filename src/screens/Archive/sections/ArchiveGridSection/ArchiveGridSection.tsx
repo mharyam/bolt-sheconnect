@@ -2,104 +2,17 @@ import React, { useState } from "react";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Button } from "../../../../components/ui/button";
 import { CommunityModal } from "../../../../components/CommunityModal";
+import { Community } from "../../Archive";
 
-interface Community {
-  name: string;
-  category: string;
-  description: string;
-  location: string;
-  website: string;
-  image: string;
-  members: string;
+interface ArchiveGridSectionProps {
+  communities: Community[];
+  totalCount: number;
+  filteredCount: number;
 }
 
-export const ArchiveGridSection = (): JSX.Element => {
+export const ArchiveGridSection = ({ communities, totalCount, filteredCount }: ArchiveGridSectionProps): JSX.Element => {
   const [selectedCommunity, setSelectedCommunity] = useState<Community | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const communities: Community[] = [
-    {
-      name: "BLACK WOMEN IN TECH",
-      category: "TECH",
-      description: "Empowering black women in technology through mentorship, networking, and career development opportunities.",
-      location: "ABUJA, NIGERIA",
-      website: "WWW.BLACKWOMENTECH.COM",
-      image: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      members: "2.5K+"
-    },
-    {
-      name: "LADIES THAT UX",
-      category: "UI/UX",
-      description: "A global community of women in UX design, fostering growth and collaboration in user experience.",
-      location: "GLOBAL",
-      website: "WWW.LADIESTHATUX.COM",
-      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      members: "15K+"
-    },
-    {
-      name: "SHE CODES",
-      category: "CODING",
-      description: "Teaching women how to code and build careers in technology through workshops and mentorship.",
-      location: "AUSTRALIA",
-      website: "WWW.SHECODES.COM",
-      image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      members: "8K+"
-    },
-    {
-      name: "BLOOD + MILK",
-      category: "HEALTH",
-      description: "Supporting working mothers through health, wellness, and professional development resources.",
-      location: "USA",
-      website: "WWW.BLOODANDMILK.COM",
-      image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      members: "5K+"
-    },
-    {
-      name: "WOMEN WHO TECH",
-      category: "TECH",
-      description: "A nonprofit organization bringing together talented women in technology to transform the industry.",
-      location: "USA",
-      website: "WWW.WOMENWHOTECH.COM",
-      image: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      members: "12K+"
-    },
-    {
-      name: "TECHIONISTA",
-      category: "TECH",
-      description: "Connecting women in tech through events, mentorship, and career advancement opportunities.",
-      location: "CANADA",
-      website: "WWW.TECHIONISTA.COM",
-      image: "https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      members: "3K+"
-    },
-    {
-      name: "RIGHTBRAINS",
-      category: "HEALTH",
-      description: "Mental health support and resources for women in high-stress careers and leadership roles.",
-      location: "UK",
-      website: "WWW.RIGHTBRAINS.COM",
-      image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      members: "4K+"
-    },
-    {
-      name: "MUSLIM SISTER'S CONNECT",
-      category: "COMMUNITY",
-      description: "Building bridges and fostering connections among Muslim women worldwide through shared experiences.",
-      location: "GLOBAL",
-      website: "WWW.MUSLIMSISTERSCONNECT.COM",
-      image: "https://images.pexels.com/photos/3184340/pexels-photo-3184340.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      members: "6K+"
-    },
-    {
-      name: "WOMEN IN BUSINESS",
-      category: "BUSINESS",
-      description: "Empowering female entrepreneurs and business leaders through networking and mentorship programs.",
-      location: "USA",
-      website: "WWW.WOMENINBUSINESS.COM",
-      image: "https://images.pexels.com/photos/3184341/pexels-photo-3184341.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-      members: "9K+"
-    }
-  ];
 
   const handleViewCommunity = (community: Community) => {
     setSelectedCommunity(community);
@@ -114,49 +27,82 @@ export const ArchiveGridSection = (): JSX.Element => {
   return (
     <section className="w-full py-16 bg-neutralneutral-1">
       <div className="max-w-[1360px] mx-auto px-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {communities.map((community, index) => (
-            <Card key={`community-${index}`} className="overflow-hidden border border-neutral-200 hover:shadow-lg transition-shadow duration-300">
-              <div className="aspect-video overflow-hidden">
-                <img
-                  src={community.image}
-                  alt={community.name}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="inline-block px-3 py-1 bg-mata-50 text-neutral-800 text-xs font-medium rounded-full">
-                    #{community.category}
-                  </span>
-                  <span className="text-neutral-600 text-sm font-medium">
-                    {community.members}
-                  </span>
-                </div>
-                
-                <h3 className="[font-family:'Geist',Helvetica] font-bold text-neutral-800 text-lg mb-2 leading-tight">
-                  {community.name}
-                </h3>
-                
-                <p className="[font-family:'Geist',Helvetica] font-normal text-neutral-600 text-sm mb-4 leading-relaxed">
-                  {community.description}
-                </p>
-                
-                <div className="flex items-center justify-between text-xs text-neutral-500 mb-4">
-                  <span>{community.location}</span>
-                  <span>{community.website}</span>
-                </div>
-                
-                <Button 
-                  className="w-full bg-neutral-800 hover:bg-neutral-700 text-white rounded-full"
-                  onClick={() => handleViewCommunity(community)}
-                >
-                  View Community
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Results Summary */}
+        <div className="mb-8">
+          <p className="text-neutral-600 text-sm">
+            Showing <span className="font-semibold text-neutral-800">{filteredCount}</span> of{" "}
+            <span className="font-semibold text-neutral-800">{totalCount}</span> communities
+          </p>
         </div>
+
+        {/* Communities Grid */}
+        {communities.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {communities.map((community, index) => (
+              <Card key={`community-${index}`} className="overflow-hidden border border-neutral-200 hover:shadow-lg transition-shadow duration-300">
+                <div className="aspect-video overflow-hidden">
+                  <img
+                    src={community.image}
+                    alt={community.name}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="inline-block px-3 py-1 bg-mata-50 text-neutral-800 text-xs font-medium rounded-full">
+                      #{community.category}
+                    </span>
+                    <span className="text-neutral-600 text-sm font-medium">
+                      {community.members}
+                    </span>
+                  </div>
+                  
+                  <h3 className="[font-family:'Geist',Helvetica] font-bold text-neutral-800 text-lg mb-2 leading-tight">
+                    {community.name}
+                  </h3>
+                  
+                  <p className="[font-family:'Geist',Helvetica] font-normal text-neutral-600 text-sm mb-4 leading-relaxed">
+                    {community.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between text-xs text-neutral-500 mb-4">
+                    <span>{community.location}</span>
+                    <span>{community.website}</span>
+                  </div>
+                  
+                  <Button 
+                    className="w-full bg-neutral-800 hover:bg-neutral-700 text-white rounded-full"
+                    onClick={() => handleViewCommunity(community)}
+                  >
+                    View Community
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          /* No Results State */
+          <div className="text-center py-16">
+            <div className="max-w-md mx-auto">
+              <div className="w-24 h-24 mx-auto mb-6 bg-neutral-100 rounded-full flex items-center justify-center">
+                <svg className="w-12 h-12 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-neutral-800 mb-2">No communities found</h3>
+              <p className="text-neutral-600 mb-6">
+                We couldn't find any communities matching your search criteria. Try adjusting your filters or search terms.
+              </p>
+              <Button 
+                variant="outline" 
+                className="rounded-full"
+                onClick={() => window.location.reload()}
+              >
+                Clear All Filters
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Community Modal */}
