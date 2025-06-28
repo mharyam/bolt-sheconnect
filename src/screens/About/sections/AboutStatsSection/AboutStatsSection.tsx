@@ -32,9 +32,6 @@ export const AboutStatsSection = (): JSX.Element => {
           <h2 className="[font-family:'Lastik-Regular',Helvetica] font-normal text-mata-50 text-5xl tracking-[-2px] leading-tight mb-6">
             Our Impact in Numbers
           </h2>
-          <p className="[font-family:'Geist',Helvetica] font-normal text-mata-50/80 text-lg leading-relaxed max-w-2xl mx-auto">
-            Every number represents real women finding their communities, building connections, and creating lasting impact.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
