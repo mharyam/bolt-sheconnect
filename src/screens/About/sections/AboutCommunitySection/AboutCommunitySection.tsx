@@ -44,7 +44,7 @@ export const AboutCommunitySection = (): JSX.Element => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/archive">
-                <Button className="bg-mata-50 text-neutral-800 hover:bg-mata-50/90 rounded-full px-8 py-3 font-semibold text-base">
+                <Button className="bg-mata-50 text-neutral-800 hover:bg-mata-50 rounded-full px-8 py-3 font-semibold text-base">
                   Explore Communities
                 </Button>
               </Link>
