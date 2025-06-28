@@ -32,7 +32,6 @@ export const AboutCommunitySection = (): JSX.Element => {
       <div className="max-w-[1360px] mx-auto px-10">
         {/* Values Section */}
         <div className="mb-20">
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <Card key={`value-${index}`} className="border border-neutral-200 text-center hover:shadow-lg transition-shadow duration-300">
