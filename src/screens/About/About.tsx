@@ -14,7 +14,6 @@ export const About = (): JSX.Element => {
       <AboutHeroSection />
       <AboutMissionSection />
       <AboutStatsSection />
-      <AboutTeamSection />
       <AboutCommunitySection />
       <FooterSection />
     </div>
