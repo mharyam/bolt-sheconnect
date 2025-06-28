@@ -9,8 +9,8 @@ import {
 export const NavigationSection = (): JSX.Element => {
   // Navigation items data for easy mapping
   const leftNavItems = [
-    { label: "HOME", path: "/homeu451", isLink: true },
-    { label: "ARCHIVE", path: "#", isLink: false },
+    { label: "HOME", path: "/", isLink: true },
+    { label: "ARCHIVE", path: "/archive", isLink: true },
   ];
 
   const rightNavItems = [
@@ -28,7 +28,7 @@ export const NavigationSection = (): JSX.Element => {
                 {item.isLink ? (
                   <Link
                     to={item.path}
-                    className="px-4 py-[9px] [font-family:'Geist',Helvetica] font-normal text-neutral-800 text-xs tracking-[-0.48px]"
+                    className="px-4 py-[9px] [font-family:'Geist',Helvetica] font-normal text-neutral-800 text-xs tracking-[-0.48px] hover:text-neutral-600 transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -42,11 +42,13 @@ export const NavigationSection = (): JSX.Element => {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <img
-          className="w-[113.32px] h-[41.14px]"
-          alt="Mata connect logo"
-          src="/mata-connect-logo.svg"
-        />
+        <Link to="/">
+          <img
+            className="w-[113.32px] h-[41.14px]"
+            alt="Mata connect logo"
+            src="/mata-connect-logo.svg"
+          />
+        </Link>
 
         <NavigationMenu>
           <NavigationMenuList className="flex items-center gap-1">
