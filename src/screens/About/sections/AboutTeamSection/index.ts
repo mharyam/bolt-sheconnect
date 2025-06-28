@@ -1,1 +1,0 @@
-export { AboutTeamSection } from "./AboutTeamSection";
