@@ -80,7 +80,7 @@ export const ArchiveSearchSection = (): JSX.Element => {
             </div>
 
             {/* Location Dropdown */}
-            <div className="relative">
+            <div className="relative rounded-full">
               <select
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
