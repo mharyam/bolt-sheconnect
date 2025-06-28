@@ -124,7 +124,7 @@ export const ArchiveGridSection = (): JSX.Element => {
                 </div>
                 
                 <Button className="w-full bg-neutral-800 hover:bg-neutral-700 text-white rounded-full">
-                  Join Community
+                  View Community
                 </Button>
               </CardContent>
             </Card>
