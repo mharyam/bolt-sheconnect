@@ -77,8 +77,8 @@ export const CommunityHighlightSection = (): JSX.Element => {
   ];
 
   return (
-    <div className="">
-      <h1>Helllooo, Helllooo</h1>
+    <div className="w-full ">
+      
     </div>
   );
 };
