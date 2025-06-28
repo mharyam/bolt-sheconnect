@@ -5,9 +5,6 @@ export const ArchiveHeroSection = (): JSX.Element => {
     <section className="w-full py-20 bg-neutralneutral-1">
       <div className="max-w-[1360px] mx-auto px-10">
         <div className="flex flex-col items-center text-center">
-          <h1 className="[font-family:'Lastik-Regular',Helvetica] font-normal text-neutral-800 text-[64px] tracking-[-2.56px] leading-[76.8px] mb-6">
-            Archive
-          </h1>
         </div>
       </div>
     </section>
