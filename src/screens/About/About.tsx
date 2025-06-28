@@ -13,7 +13,6 @@ export const About = (): JSX.Element => {
       <NavigationSection />
       <AboutHeroSection />
       <AboutStatsSection />
-      <AboutCommunitySection />
       <FooterSection />
     </div>
   );
