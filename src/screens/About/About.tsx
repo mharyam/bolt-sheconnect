@@ -12,7 +12,7 @@ export const About = (): JSX.Element => {
     <div className="flex flex-col w-full relative bg-neutralneutral-1 overflow-hidden">
       <NavigationSection />
       <AboutHeroSection />
-      <AboutMissionSection />
+      <AboutStatsSection />
       <AboutCommunitySection />
       <FooterSection />
     </div>
