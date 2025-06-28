@@ -9,7 +9,6 @@ export const FooterSection = (): JSX.Element => {
             alt="MATA CONNECT" 
             className="h-6 w-auto"
           />
-        </div>
 
         <div className="flex flex-col items-end gap-4">
 
