@@ -5,8 +5,8 @@ export const InspirationalQuoteSection = (): JSX.Element => {
   const quoteItems = [
     {
       image: {
-        src: "https://images.pexels.com/photos/1263986/pexels-photo-1263986.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
-        alt: "Decorative flower",
+        src: "/butterfly-1.svg",
+        alt: "Decorative butterfly",
         className: "w-[46px] h-[67px] object-cover rounded-lg",
       },
       quote: "Where Women Connect, Learn, And Thrive",
