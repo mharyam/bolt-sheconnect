@@ -66,7 +66,7 @@ export const CommunityEngagementSection = (): JSX.Element => {
           <img
             className="w-[788px] h-[525px] object-cover rounded-2xl"
             alt="Women community leaders illustration"
-            src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            src="/hero-picture.svg"
           />
         </div>
       </div>
