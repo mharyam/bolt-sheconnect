@@ -67,12 +67,6 @@ export const AboutCommunitySection = (): JSX.Element => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a 
-              href="mailto:hello@mataconnect.com"
-              className="[font-family:'Geist',Helvetica] font-semibold text-neutral-800 hover:text-neutral-600 transition-colors duration-300"
-            >
-              hello@mataconnect.com
-            </a>
           </div>
         </div>
       </div>
