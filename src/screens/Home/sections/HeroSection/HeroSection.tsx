@@ -4,7 +4,7 @@ import { Card, CardContent } from "../../../../components/ui/card";
 
 export const HeroSection = (): JSX.Element => {
   return (
-    <Card className="w-full rounded-[124px_124px_0px_0px] overflow-hidden mt-24 border-t-0 border-b-0 ">
+    <Card className="w-full rounded-[124px_124px_0px_0px] overflow-hidden mt-24 border-t-0 border-b-0">
       <CardContent className="flex flex-col items-center py-6 px-4">
         <div className="flex flex-col items-center max-w-[782px] mx-auto">
           <img
