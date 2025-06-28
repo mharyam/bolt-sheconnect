@@ -38,7 +38,7 @@ export const ArchiveSearchSection = (): JSX.Element => {
   return (
     <section className="w-full py-12 bg-neutralneutral-1">
       <div className="max-w-[1360px] mx-auto px-10">
-        <div className="border-2 border-dashed rounded-2xl p-8 bg-blue-50/30">
+        <div className="border-2 border-dashed border-blue-400 rounded-2xl p-8 bg-blue-50/30">
           {/* Search Bar */}
           <div className="relative mb-6">
             <div className="relative">
@@ -63,7 +63,7 @@ export const ArchiveSearchSection = (): JSX.Element => {
               <select
                 value={selectedRecommend}
                 onChange={(e) => setSelectedRecommend(e.target.value)}
-                className="appearance-none bg-white border border-neutral-300 rounded-lg px-4 py-3 pr-10 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent cursor-pointer min-w-[140px]"
+                className="appearance-none bg-white border border-neutral-300 rounded-full px-4 py-3 pr-10 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent cursor-pointer min-w-[140px]"
               >
                 <option value="">Recommend</option>
                 {recommendOptions.map((option) => (
@@ -80,11 +80,11 @@ export const ArchiveSearchSection = (): JSX.Element => {
             </div>
 
             {/* Location Dropdown */}
-            <div className="relative rounded-full">
+            <div className="relative">
               <select
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
-                className="appearance-none bg-white border border-neutral-300 rounded-lg px-4 py-3 pr-10 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent cursor-pointer min-w-[120px]"
+                className="appearance-none bg-white border border-neutral-300 rounded-full px-4 py-3 pr-10 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent cursor-pointer min-w-[120px]"
               >
                 <option value="">Location</option>
                 {locationOptions.map((option) => (
@@ -105,7 +105,7 @@ export const ArchiveSearchSection = (): JSX.Element => {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="appearance-none bg-white border border-neutral-300 rounded-lg px-4 py-3 pr-10 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent cursor-pointer min-w-[130px]"
+                className="appearance-none bg-white border border-neutral-300 rounded-full px-4 py-3 pr-10 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:border-transparent cursor-pointer min-w-[130px]"
               >
                 <option value="">Categories</option>
                 {categoryOptions.map((option) => (
