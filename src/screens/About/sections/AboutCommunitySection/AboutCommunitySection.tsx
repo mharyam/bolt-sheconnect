@@ -37,7 +37,7 @@ export const AboutCommunitySection = (): JSX.Element => {
             <h2 className="[font-family:'Lastik-Regular',Helvetica] font-normal text-mata-50 text-5xl tracking-[-2px] leading-tight mb-6">
               Ready to Find Your Community?
             </h2>
-            <p className="[font-family:'Geist',Helvetica] font-normal text-mata-50/80 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+            <p className="[font-family:'Geist',Helvetica] font-normal text-mata-50 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
               Join thousands of women who have already discovered their perfect communities through MataConnect. 
               Your journey to meaningful connections starts here.
             </p>
