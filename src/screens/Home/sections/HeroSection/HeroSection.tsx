@@ -27,9 +27,6 @@ export const HeroSection = (): JSX.Element => {
 
           <Button 
             className="mt-16"
-            style={{
-              borderRadius: "124px 124px 0px 0px"
-            }}
           >
             Explore All Archives
           </Button>
