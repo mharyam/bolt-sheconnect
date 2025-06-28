@@ -174,7 +174,7 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess }: Sub
 
   if (submitSuccess) {
     return (
-      <section className="w-full py-12 bg-neutralneutral-1">
+      <section className="w-full py-6 bg-neutralneutral-1">
         <div className="max-w-[800px] mx-auto px-10">
           <Card className="border-2 border-green-200 bg-green-50">
             <CardContent className="p-12 text-center">
