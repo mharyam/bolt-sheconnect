@@ -3,46 +3,32 @@ import { NavigationSection } from "../Home/sections/NavigationSection";
 import { FooterSection } from "../Home/sections/FooterSection";
 import { SubmitFormSection } from "./sections/SubmitFormSection";
 import { SubmitHeroSection } from "./sections/SubmitHeroSection";
-
-export interface CommunitySubmission {
-  name: string;
-  category: string;
-  description: string;
-  location: string;
-  website: string;
-  image: string;
-  members: string;
-  contactEmail: string;
-  foundedYear: string;
-  socialMedia: {
-    twitter?: string;
-    linkedin?: string;
-    instagram?: string;
-  };
-}
+import { communityService, CommunitySubmission } from "../../lib/communityService";
 
 export const Submit = (): JSX.Element => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleSubmit = async (data: CommunitySubmission) => {
     setIsSubmitting(true);
+    setSubmitError(null);
     
     try {
-      // Simulate API call - in real app, this would save to database
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Use the community service to submit the data
+      const success = await communityService.submitCommunity(data);
       
-      // For now, we'll just log the data and show success
-      console.log('Community submitted:', data);
-      
-      setSubmitSuccess(true);
-      setIsSubmitting(false);
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitSuccess(false), 5000);
-      
+      if (success) {
+        setSubmitSuccess(true);
+        // Reset success message after 10 seconds
+        setTimeout(() => setSubmitSuccess(false), 10000);
+      } else {
+        setSubmitError('Failed to submit community. Please try again.');
+      }
     } catch (error) {
       console.error('Submission error:', error);
+      setSubmitError('An unexpected error occurred. Please try again.');
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -55,6 +41,7 @@ export const Submit = (): JSX.Element => {
         onSubmit={handleSubmit}
         isSubmitting={isSubmitting}
         submitSuccess={submitSuccess}
+        submitError={submitError}
       />
       <FooterSection />
     </div>

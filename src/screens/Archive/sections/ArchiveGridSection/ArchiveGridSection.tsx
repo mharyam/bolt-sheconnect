@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Button } from "../../../../components/ui/button";
 import { CommunityModal } from "../../../../components/CommunityModal";
-import { Community } from "../../Archive";
+import { Community } from "../../../../lib/communityService";
 
 interface ArchiveGridSectionProps {
   communities: Community[];
@@ -38,8 +38,8 @@ export const ArchiveGridSection = ({ communities, totalCount, filteredCount }: A
         {/* Communities Grid */}
         {communities.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {communities.map((community, index) => (
-              <Card key={`community-${index}`} className="overflow-hidden border border-neutral-200 hover:shadow-lg transition-shadow duration-300">
+            {communities.map((community) => (
+              <Card key={`community-${community.id}`} className="overflow-hidden border border-neutral-200 hover:shadow-lg transition-shadow duration-300">
                 <div className="aspect-video overflow-hidden">
                   <img
                     src={community.image}

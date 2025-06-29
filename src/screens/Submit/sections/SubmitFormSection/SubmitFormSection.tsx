@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { CheckCircle, Upload, AlertCircle } from "lucide-react";
-import { CommunitySubmission } from "../../Submit";
+import { CommunitySubmission } from "../../../../lib/communityService";
 
 interface SubmitFormSectionProps {
   onSubmit: (data: CommunitySubmission) => void;
   isSubmitting: boolean;
   submitSuccess: boolean;
+  submitError?: string | null;
 }
 
 interface FormData {
@@ -29,7 +30,7 @@ interface FormErrors {
   [key: string]: string;
 }
 
-export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess }: SubmitFormSectionProps): JSX.Element => {
+export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submitError }: SubmitFormSectionProps): JSX.Element => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     category: "",
@@ -202,6 +203,18 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess }: Sub
   return (
     <section className="w-full py-10 bg-neutralneutral-1">
       <div className="max-w-[800px] mx-auto px-10">
+        {/* Error Message */}
+        {submitError && (
+          <Card className="border-2 border-red-200 bg-red-50 mb-6">
+            <CardContent className="p-4">
+              <div className="flex items-center text-red-700">
+                <AlertCircle className="w-5 h-5 mr-2" />
+                <p>{submitError}</p>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         <Card className="border border-neutral-200 shadow-lg">
           <CardContent className="p-8">
             <form onSubmit={handleSubmit} className="space-y-8">
