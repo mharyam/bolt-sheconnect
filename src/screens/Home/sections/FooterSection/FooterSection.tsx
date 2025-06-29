@@ -17,35 +17,39 @@ export const FooterSection = (): JSX.Element => {
         </div>
       </div>
 
-      {/* Built on Bolt Badge - Bottom Right */}
-      <div className="absolute bottom-4 right-4">
+      {/* Official Bolt.new Badge - Bottom Right */}
+      <div className="absolute bottom-6 right-6">
         <a 
           href="https://bolt.new" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-3 py-2 bg-black rounded-full hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+          className="block transform hover:scale-105 transition-transform duration-300"
         >
-          {/* Bolt Icon */}
-          <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
-            <svg 
-              width="12" 
-              height="12" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-black"
-            >
-              <path 
-                d="M13 10V3L4 14h7v7l9-11h-7z" 
-                fill="currentColor"
-              />
-            </svg>
+          {/* Circular Badge with Border Text */}
+          <div className="relative w-20 h-20 group">
+            {/* Outer Circle with Border Text */}
+            <div className="absolute inset-0 rounded-full bg-white border-2 border-black flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+              {/* Circular Text Path */}
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 80 80">
+                <defs>
+                  <path
+                    id="circle-path"
+                    d="M 40, 40 m -30, 0 a 30,30 0 1,1 60,0 a 30,30 0 1,1 -60,0"
+                  />
+                </defs>
+                <text className="text-[6px] font-bold fill-black tracking-wider">
+                  <textPath href="#circle-path" startOffset="0%">
+                    POWERED BY BOLT.NEW • POWERED BY BOLT.NEW • 
+                  </textPath>
+                </text>
+              </svg>
+              
+              {/* Center "b" Logo */}
+              <div className="relative z-10 w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-lg italic">b</span>
+              </div>
+            </div>
           </div>
-          
-          {/* Badge Text */}
-          <span className="text-white text-sm font-medium">
-            Built on Bolt
-          </span>
         </a>
       </div>
     </footer>
