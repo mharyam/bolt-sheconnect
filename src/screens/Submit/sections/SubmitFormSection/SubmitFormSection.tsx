@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
-import { CheckCircle, Upload, AlertCircle } from "lucide-react";
+import { CheckCircle, Upload, AlertCircle, ImageIcon } from "lucide-react";
 import { CommunitySubmission } from "../../../../lib/communityService";
+import { FileService } from "../../../../lib/fileService";
 
 interface SubmitFormSectionProps {
   onSubmit: (data: CommunitySubmission) => void;
@@ -48,6 +49,8 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [imagePreview, setImagePreview] = useState<string>("");
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
+  const [uploadedFileName, setUploadedFileName] = useState<string>("");
 
   const categories = [
     "TECH",
@@ -57,7 +60,13 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
     "BUSINESS",
     "EDUCATION",
     "ARTS",
-    "COMMUNITY"
+    "COMMUNITY",
+    "LEADERSHIP",
+    "PODCAST",
+    "INNOVATION",
+    "CLIMATE",
+    "METALS",
+    "SEXUALITY"
   ];
 
   const validateForm = (): boolean => {
@@ -110,29 +119,47 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
     }
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      // In a real app, you'd upload to a service like Cloudinary
-      // For demo, we'll use a placeholder image URL
-      const placeholderImages = [
-        "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-        "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
-      ];
+    if (!file) return;
+
+    setIsUploadingImage(true);
+    setErrors(prev => ({ ...prev, image: "" }));
+
+    try {
+      // Use FileService to handle the upload
+      const imageUrl = await FileService.saveImage(file);
       
-      const randomImage = placeholderImages[Math.floor(Math.random() * placeholderImages.length)];
-      setFormData(prev => ({ ...prev, image: randomImage }));
-      setImagePreview(randomImage);
+      setFormData(prev => ({ ...prev, image: imageUrl }));
+      setImagePreview(imageUrl);
+      setUploadedFileName(file.name);
+      
+      console.log('✅ Image uploaded successfully:', {
+        originalName: file.name,
+        savedUrl: imageUrl,
+        size: `${(file.size / 1024 / 1024).toFixed(2)}MB`
+      });
+      
+    } catch (error) {
+      console.error('❌ Image upload failed:', error);
+      setErrors(prev => ({ 
+        ...prev, 
+        image: error instanceof Error ? error.message : 'Failed to upload image' 
+      }));
+    } finally {
+      setIsUploadingImage(false);
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!validateForm()) {
       return;
     }
+
+    // Ensure upload directory exists (simulated)
+    await FileService.ensureUploadDirectory();
 
     const submissionData: CommunitySubmission = {
       name: formData.name,
@@ -140,7 +167,7 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
       description: formData.description,
       location: formData.location,
       website: formData.website.startsWith('http') ? formData.website : `https://${formData.website}`,
-      image: formData.image || "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+      image: formData.image || "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
       members: formData.members,
       contactEmail: formData.contactEmail,
       foundedYear: formData.foundedYear,
@@ -151,6 +178,7 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
       }
     };
 
+    console.log('📤 Submitting community data:', submissionData);
     onSubmit(submissionData);
   };
 
@@ -170,23 +198,33 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
       instagram: ""
     });
     setImagePreview("");
+    setUploadedFileName("");
     setErrors({});
   };
 
   if (submitSuccess) {
     return (
-      <section className="w-full py-16 bg-neutralneutral-1">
+      <section className="w-full py-10 bg-neutralneutral-1">
         <div className="max-w-[800px] mx-auto px-10">
           <Card className="border-2 border-green-200 bg-green-50">
             <CardContent className="p-12 text-center">
               <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-6" />
               <h2 className="text-2xl font-bold text-neutral-800 mb-4">
-                Community Submitted Successfully!
+                Community Submitted Successfully! 🎉
               </h2>
-              <p className="text-neutral-600 mb-8 leading-relaxed">
-                Thank you for submitting your community to our archive. We'll review your submission 
-                and it will be live within 24-48 hours. You'll receive a confirmation email shortly.
+              <p className="text-neutral-600 mb-6 leading-relaxed">
+                Thank you for submitting your community to our archive. Your submission has been saved 
+                and will be reviewed by our team. It will be live within 24-48 hours.
               </p>
+              <div className="bg-white p-4 rounded-lg mb-6 text-left">
+                <h3 className="font-semibold text-neutral-800 mb-2">What happens next?</h3>
+                <ul className="text-sm text-neutral-600 space-y-1">
+                  <li>✅ Your community data has been saved to our database</li>
+                  <li>📧 You'll receive a confirmation email shortly</li>
+                  <li>👀 Our team will review your submission</li>
+                  <li>🚀 Your community will go live within 24-48 hours</li>
+                </ul>
+              </div>
               <Button 
                 onClick={resetForm}
                 className="bg-neutral-800 hover:bg-neutral-700 text-white rounded-full px-8"
@@ -484,22 +522,51 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
                 
                 <div className="space-y-4">
                   <div className="flex items-center justify-center w-full">
-                    <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-neutral-300 border-dashed rounded-xl cursor-pointer bg-neutral-50 hover:bg-neutral-100 transition-colors">
+                    <label className={`flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-xl cursor-pointer transition-colors ${
+                      isUploadingImage 
+                        ? 'border-blue-300 bg-blue-50' 
+                        : errors.image 
+                          ? 'border-red-300 bg-red-50' 
+                          : 'border-neutral-300 bg-neutral-50 hover:bg-neutral-100'
+                    }`}>
                       <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                        <Upload className="w-8 h-8 mb-2 text-neutral-500" />
-                        <p className="mb-2 text-sm text-neutral-500">
-                          <span className="font-semibold">Click to upload</span> or drag and drop
-                        </p>
-                        <p className="text-xs text-neutral-500">PNG, JPG or GIF (MAX. 5MB)</p>
+                        {isUploadingImage ? (
+                          <>
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-2"></div>
+                            <p className="text-sm text-blue-600 font-semibold">Uploading image...</p>
+                          </>
+                        ) : (
+                          <>
+                            <Upload className="w-8 h-8 mb-2 text-neutral-500" />
+                            <p className="mb-2 text-sm text-neutral-500">
+                              <span className="font-semibold">Click to upload</span> or drag and drop
+                            </p>
+                            <p className="text-xs text-neutral-500">PNG, JPG or GIF (MAX. 5MB)</p>
+                            {uploadedFileName && (
+                              <p className="text-xs text-green-600 mt-1 flex items-center">
+                                <ImageIcon className="w-3 h-3 mr-1" />
+                                {uploadedFileName}
+                              </p>
+                            )}
+                          </>
+                        )}
                       </div>
                       <input
                         type="file"
                         className="hidden"
                         accept="image/*"
                         onChange={handleImageUpload}
+                        disabled={isUploadingImage}
                       />
                     </label>
                   </div>
+                  
+                  {errors.image && (
+                    <p className="text-sm text-red-600 flex items-center">
+                      <AlertCircle className="w-4 h-4 mr-1" />
+                      {errors.image}
+                    </p>
+                  )}
                   
                   {imagePreview && (
                     <div className="mt-4">
@@ -518,7 +585,7 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
               <div className="pt-6 border-t border-neutral-200">
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isUploadingImage}
                   className="w-full bg-neutral-800 hover:bg-neutral-700 text-white rounded-full py-4 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
