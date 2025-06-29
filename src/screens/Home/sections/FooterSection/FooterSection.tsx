@@ -18,7 +18,7 @@ export const FooterSection = (): JSX.Element => {
       </div>
 
       {/* Official Bolt.new Badge - Bottom Right */}
-      <div className="absolute bottom-6 right-6">
+      <div className="absolute bottom-6 right-6 mt-6">
         <a 
           href="https://bolt.new" 
           target="_blank" 
