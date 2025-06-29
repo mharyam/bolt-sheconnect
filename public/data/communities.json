@@ -7,12 +7,12 @@
     "location": "United Kingdom",
     "website": "www.tech-sisters.com",
     "image": "tech-sisters.png",
-    "members": "46.2K+",
-    "contactEmail": "info@girlstalkcorporation.com",
-    "foundedYear": "2020",
+    "members": "1.5K+",
+    "contactEmail": "info@techsisters.com",
+    "foundedYear": "2018",
     "socialMedia": {
-      "linkedin": "",
-      "instagram": ""
+      "linkedin": "https://www.linkedin.com/company/tech-sisters-for-muslim-women-in-tech/",
+      "instagram": "https://www.instagram.com/tech_sisters/"
     }
   },
   {
@@ -90,7 +90,7 @@
     "description": "Girls Talk Corporation is an award-winning organisation that develops products and services to connect businesses with female talent in Asia, Africa, Europe, UK and United States through digital products and content, bespoke programmes & events.",
     "location": "CANADA",
     "website": "www.girlstalklondon.com",
-    "image": "https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+    "image": "/girl_talk_london.png",
     "members": "3K+",
     "contactEmail": "info@techionista.com",
     "foundedYear": "2020",
