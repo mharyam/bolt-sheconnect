@@ -20,20 +20,6 @@ export const HeroSection = (): JSX.Element => {
               <div className="relative w-20 h-20 group">
                 {/* Outer Circle with Border Text */}
                 <div className="absolute inset-0 rounded-full bg-white border-2 border-black flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                  {/* Circular Text Path */}
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 80 80">
-                    <defs>
-                      <path
-                        id="hero-circle-path"
-                        d="M 40, 40 m -30, 0 a 30,30 0 1,1 60,0 a 30,30 0 1,1 -60,0"
-                      />
-                    </defs>
-                    <text className="text-[6px] font-bold fill-black tracking-wider">
-                      <textPath href="#hero-circle-path" startOffset="0%">
-                        POWERED BY BOLT.NEW • POWERED BY BOLT.NEW • 
-                      </textPath>
-                    </text>
-                  </svg>
                   
                   {/* Center "b" Logo */}
                   <div className="relative z-10 w-8 h-8 bg-black rounded-full flex items-center justify-center">
