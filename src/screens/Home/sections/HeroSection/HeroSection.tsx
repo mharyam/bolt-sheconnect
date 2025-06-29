@@ -8,27 +8,6 @@ export const HeroSection = (): JSX.Element => {
     <Card className="w-full rounded-[124px_124px_0px_0px] overflow-hidden mt-24 border-t-0 border-b-0">
       <CardContent className="flex flex-col items-center py-6 px-4">
         <div className="flex flex-col items-center max-w-[782px] mx-auto">
-          {/* Official Bolt.new Badge - Above Hero Image */}
-          <div className="mb-6">
-            <a 
-              href="https://bolt.new" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block transform hover:scale-105 transition-transform duration-300"
-            >
-              {/* Circular Badge with Border Text */}
-              <div className="relative w-20 h-20 group">
-                {/* Outer Circle with Border Text */}
-                <div className="absolute inset-0 rounded-full bg-white border-2 border-black flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                  
-                  {/* Center "b" Logo */}
-                  <div className="relative z-10 w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-lg italic">b</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
 
           {/* Hero Image */}
           <img
