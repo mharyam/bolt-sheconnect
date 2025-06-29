@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
-import { CheckCircle, Upload, AlertCircle, ImageIcon } from "lucide-react";
+import { CheckCircle, Upload, AlertCircle, ImageIcon, Info } from "lucide-react";
 import { CommunitySubmission } from "../../../../lib/communityService";
 import { FileService } from "../../../../lib/fileService";
 
@@ -127,6 +127,13 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
     setErrors(prev => ({ ...prev, image: "" }));
 
     try {
+      console.log('📤 Starting image upload process...');
+      console.log('📁 File details:', {
+        name: file.name,
+        size: `${(file.size / 1024 / 1024).toFixed(2)}MB`,
+        type: file.type
+      });
+
       // Use FileService to handle the upload
       const imageUrl = await FileService.saveImage(file);
       
@@ -158,6 +165,8 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
       return;
     }
 
+    console.log('🚀 Form submission started...');
+
     // Ensure upload directory exists (simulated)
     await FileService.ensureUploadDirectory();
 
@@ -179,6 +188,8 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
     };
 
     console.log('📤 Submitting community data:', submissionData);
+    console.log('💾 Data will be saved to localStorage as "communities-data"');
+    
     onSubmit(submissionData);
   };
 
@@ -214,23 +225,50 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
               </h2>
               <p className="text-neutral-600 mb-6 leading-relaxed">
                 Thank you for submitting your community to our archive. Your submission has been saved 
-                and will be reviewed by our team. It will be live within 24-48 hours.
+                to our database and will be visible immediately in the archive.
               </p>
+              
+              {/* 🔍 SAVE LOCATION INFO */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 text-left">
+                <div className="flex items-start">
+                  <Info className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
+                  <div>
+                    <h3 className="font-semibold text-blue-800 mb-2">Where is your data saved?</h3>
+                    <ul className="text-sm text-blue-700 space-y-1">
+                      <li>💾 <strong>Primary Storage:</strong> Browser localStorage ("communities-data")</li>
+                      <li>🔄 <strong>Backup:</strong> Browser localStorage ("communities-backup")</li>
+                      <li>📊 <strong>Immediate Access:</strong> Available in Archive page right now</li>
+                      <li>🌐 <strong>Note:</strong> In production, this would save to the server's JSON file</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
               <div className="bg-white p-4 rounded-lg mb-6 text-left">
                 <h3 className="font-semibold text-neutral-800 mb-2">What happens next?</h3>
                 <ul className="text-sm text-neutral-600 space-y-1">
-                  <li>✅ Your community data has been saved to our database</li>
-                  <li>📧 You'll receive a confirmation email shortly</li>
-                  <li>👀 Our team will review your submission</li>
-                  <li>🚀 Your community will go live within 24-48 hours</li>
+                  <li>✅ Your community data has been saved to browser storage</li>
+                  <li>🔍 You can see it immediately in the Archive page</li>
+                  <li>📱 Data persists until browser storage is cleared</li>
+                  <li>🚀 In production: Would be saved to server and database</li>
                 </ul>
               </div>
-              <Button 
-                onClick={resetForm}
-                className="bg-neutral-800 hover:bg-neutral-700 text-white rounded-full px-8"
-              >
-                Submit Another Community
-              </Button>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button 
+                  onClick={resetForm}
+                  className="bg-neutral-800 hover:bg-neutral-700 text-white rounded-full px-8"
+                >
+                  Submit Another Community
+                </Button>
+                <Button 
+                  variant="outline"
+                  onClick={() => window.open('/archive', '_blank')}
+                  className="rounded-full px-8"
+                >
+                  View in Archive
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -241,6 +279,23 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
   return (
     <section className="w-full py-10 bg-neutralneutral-1">
       <div className="max-w-[800px] mx-auto px-10">
+        {/* 🔍 SAVE LOCATION INFO BANNER */}
+        <Card className="border border-blue-200 bg-blue-50 mb-6">
+          <CardContent className="p-4">
+            <div className="flex items-start">
+              <Info className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
+              <div>
+                <h3 className="font-semibold text-blue-800 mb-1">Data Storage Information</h3>
+                <p className="text-sm text-blue-700">
+                  Your community submission will be saved to <strong>browser localStorage</strong> and will be 
+                  immediately available in the Archive page. In a production environment, this would save 
+                  directly to the server's JSON file and database.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Error Message */}
         {submitError && (
           <Card className="border-2 border-red-200 bg-red-50 mb-6">
@@ -591,7 +646,7 @@ export const SubmitFormSection = ({ onSubmit, isSubmitting, submitSuccess, submi
                   {isSubmitting ? (
                     <div className="flex items-center justify-center">
                       <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                      Submitting Community...
+                      Saving to localStorage...
                     </div>
                   ) : (
                     "Submit Community"

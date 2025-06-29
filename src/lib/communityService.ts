@@ -43,18 +43,20 @@ class CommunityService {
     }
 
     try {
-      // First try to load from localStorage (for newly submitted communities)
+      // 🔍 FIRST: Try to load from localStorage (for newly submitted communities)
       const localData = localStorage.getItem('communities-data');
       if (localData) {
         const localCommunities = JSON.parse(localData);
         if (Array.isArray(localCommunities) && localCommunities.length > 0) {
+          console.log('📦 Loading communities from localStorage:', localCommunities.length);
           this.communities = localCommunities;
           this.isLoaded = true;
           return this.communities;
         }
       }
 
-      // Fallback to original JSON file
+      // 🔍 FALLBACK: Load from original JSON file
+      console.log('📄 Loading communities from JSON file...');
       const response = await fetch('/data/communities.json');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -64,55 +66,19 @@ class CommunityService {
       
       // Save to localStorage for future use
       localStorage.setItem('communities-data', JSON.stringify(this.communities));
+      console.log('💾 Saved original JSON data to localStorage');
       
       return this.communities;
     } catch (error) {
-      console.error('Error loading communities:', error);
-      // Return empty array as fallback
+      console.error('❌ Error loading communities:', error);
       return [];
     }
   }
 
-  async getAllCommunities(): Promise<Community[]> {
-    return await this.loadCommunities();
-  }
-
-  async getCommunityById(id: number): Promise<Community | null> {
-    const communities = await this.loadCommunities();
-    return communities.find(community => community.id === id) || null;
-  }
-
-  async searchCommunities(query: string): Promise<Community[]> {
-    const communities = await this.loadCommunities();
-    const searchTerm = query.toLowerCase();
-    
-    return communities.filter(community =>
-      community.name.toLowerCase().includes(searchTerm) ||
-      community.description.toLowerCase().includes(searchTerm) ||
-      community.category.toLowerCase().includes(searchTerm) ||
-      community.location.toLowerCase().includes(searchTerm)
-    );
-  }
-
-  async filterCommunitiesByCategory(category: string): Promise<Community[]> {
-    const communities = await this.loadCommunities();
-    return communities.filter(community => 
-      community.category.toUpperCase() === category.toUpperCase()
-    );
-  }
-
-  async filterCommunitiesByLocation(location: string): Promise<Community[]> {
-    const communities = await this.loadCommunities();
-    return communities.filter(community => {
-      if (location === "Global") {
-        return community.location.toUpperCase().includes("GLOBAL");
-      }
-      return community.location.toUpperCase().includes(location.toUpperCase());
-    });
-  }
-
   async submitCommunity(submission: CommunitySubmission): Promise<boolean> {
     try {
+      console.log('🚀 Starting community submission process...');
+      
       // Load current communities
       await this.loadCommunities();
       
@@ -122,16 +88,24 @@ class CommunityService {
         ...submission
       };
 
+      console.log('✨ New community created:', {
+        id: newCommunity.id,
+        name: newCommunity.name,
+        category: newCommunity.category,
+        location: newCommunity.location
+      });
+
       // Add to local array
       this.communities.push(newCommunity);
       
-      // Save updated communities to localStorage (simulating JSON file update)
+      // 🎯 THIS IS WHERE WE SAVE THE DATA
       const success = await this.saveCommunitiesToStorage();
       
       if (success) {
-        console.log('✅ Community submitted successfully:', newCommunity);
+        console.log('✅ Community submitted successfully!');
+        console.log('📊 Total communities now:', this.communities.length);
         
-        // In a real application, this would also:
+        // 🔍 IMPORTANT: In a real application, this would also:
         // 1. Send POST request to your API endpoint
         // 2. Update the actual JSON file on the server
         // 3. Handle validation and error responses
@@ -149,24 +123,69 @@ class CommunityService {
 
   private async saveCommunitiesToStorage(): Promise<boolean> {
     try {
-      // Save to localStorage (simulating JSON file update)
+      console.log('💾 Saving communities to storage...');
+      
+      // 🎯 PRIMARY SAVE: Save to localStorage (simulating JSON file update)
       localStorage.setItem('communities-data', JSON.stringify(this.communities));
       
-      // Also save a backup with timestamp
+      // 🎯 BACKUP SAVE: Also save a backup with timestamp
       const backup = {
         timestamp: new Date().toISOString(),
-        communities: this.communities
+        communities: this.communities,
+        totalCount: this.communities.length
       };
       localStorage.setItem('communities-backup', JSON.stringify(backup));
       
-      console.log('💾 Communities data saved to local storage');
-      console.log(`📊 Total communities: ${this.communities.length}`);
+      console.log('✅ Communities data saved successfully!');
+      console.log('📊 Storage Details:', {
+        location: 'localStorage',
+        primaryKey: 'communities-data',
+        backupKey: 'communities-backup',
+        totalCommunities: this.communities.length,
+        lastUpdated: new Date().toISOString()
+      });
+      
+      // 🔍 SHOW WHAT'S ACTUALLY SAVED
+      console.log('📋 Latest 3 communities in storage:');
+      const latest = this.communities.slice(-3);
+      latest.forEach((community, index) => {
+        console.log(`${index + 1}. ${community.name} (${community.category}) - ID: ${community.id}`);
+      });
       
       return true;
     } catch (error) {
-      console.error('Error saving communities to storage:', error);
+      console.error('❌ Error saving communities to storage:', error);
       return false;
     }
+  }
+
+  // 🔍 DEBUG METHOD: Get current storage info
+  getStorageInfo(): {
+    hasLocalData: boolean;
+    totalCommunities: number;
+    lastUpdated: string | null;
+    storageSize: string;
+  } {
+    const localData = localStorage.getItem('communities-data');
+    const backup = localStorage.getItem('communities-backup');
+    
+    let totalCommunities = 0;
+    let lastUpdated = null;
+    
+    if (backup) {
+      const backupData = JSON.parse(backup);
+      totalCommunities = backupData.totalCount || 0;
+      lastUpdated = backupData.timestamp;
+    }
+    
+    const storageSize = localData ? `${(localData.length / 1024).toFixed(2)}KB` : '0KB';
+    
+    return {
+      hasLocalData: !!localData,
+      totalCommunities,
+      lastUpdated,
+      storageSize
+    };
   }
 
   // Method to export communities data (for debugging/admin purposes)
