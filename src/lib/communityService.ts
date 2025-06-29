@@ -43,36 +43,213 @@ class CommunityService {
     }
 
     try {
-      // 🔍 FIRST: Try to load from localStorage (for newly submitted communities)
+      console.log('🔍 Starting community loading process...');
+      
+      // FIRST: Try to load from localStorage (for newly submitted communities)
       const localData = localStorage.getItem('communities-data');
       if (localData) {
-        const localCommunities = JSON.parse(localData);
-        if (Array.isArray(localCommunities) && localCommunities.length > 0) {
-          console.log('📦 Loading communities from localStorage:', localCommunities.length);
-          this.communities = localCommunities;
-          this.isLoaded = true;
-          return this.communities;
+        try {
+          const localCommunities = JSON.parse(localData);
+          if (Array.isArray(localCommunities) && localCommunities.length > 0) {
+            console.log('📦 Loading communities from localStorage:', localCommunities.length);
+            this.communities = localCommunities;
+            this.isLoaded = true;
+            return this.communities;
+          }
+        } catch (parseError) {
+          console.warn('⚠️ Failed to parse localStorage data, falling back to JSON file');
+          localStorage.removeItem('communities-data'); // Clear corrupted data
         }
       }
 
-      // 🔍 FALLBACK: Load from original JSON file
+      // FALLBACK: Load from original JSON file with multiple path attempts
       console.log('📄 Loading communities from JSON file...');
-      const response = await fetch('/data/communities.json');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      
+      const possiblePaths = [
+        '/data/communities.json',
+        './data/communities.json',
+        '../data/communities.json',
+        '/public/data/communities.json'
+      ];
+
+      let response: Response | null = null;
+      let successfulPath = '';
+
+      // Try each path until one works
+      for (const path of possiblePaths) {
+        try {
+          console.log(`🔍 Trying path: ${path}`);
+          response = await fetch(path);
+          if (response.ok) {
+            successfulPath = path;
+            console.log(`✅ Successfully loaded from: ${path}`);
+            break;
+          }
+        } catch (error) {
+          console.log(`❌ Failed to load from ${path}:`, error);
+          continue;
+        }
       }
-      this.communities = await response.json();
+
+      if (!response || !response.ok) {
+        console.error('❌ All paths failed, using fallback data');
+        // Use fallback data if JSON file can't be loaded
+        this.communities = this.getFallbackCommunities();
+        this.isLoaded = true;
+        
+        // Save fallback data to localStorage
+        localStorage.setItem('communities-data', JSON.stringify(this.communities));
+        console.log('💾 Saved fallback data to localStorage');
+        
+        return this.communities;
+      }
+
+      // Parse the successful response
+      const jsonData = await response.json();
+      
+      if (!Array.isArray(jsonData)) {
+        throw new Error('Invalid JSON format: expected array');
+      }
+
+      this.communities = jsonData;
       this.isLoaded = true;
       
       // Save to localStorage for future use
       localStorage.setItem('communities-data', JSON.stringify(this.communities));
+      console.log(`✅ Successfully loaded ${this.communities.length} communities from ${successfulPath}`);
       console.log('💾 Saved original JSON data to localStorage');
       
       return this.communities;
+      
     } catch (error) {
       console.error('❌ Error loading communities:', error);
-      return [];
+      
+      // Last resort: use fallback data
+      console.log('🔄 Using fallback community data...');
+      this.communities = this.getFallbackCommunities();
+      this.isLoaded = true;
+      
+      // Save fallback data to localStorage
+      localStorage.setItem('communities-data', JSON.stringify(this.communities));
+      
+      return this.communities;
     }
+  }
+
+  // Fallback communities data in case JSON file can't be loaded
+  private getFallbackCommunities(): Community[] {
+    return [
+      {
+        id: 1,
+        name: "Tech Sisters",
+        category: "TECH",
+        description: "A community that supports Muslim Women in Tech by telling our stories and coming together through mentorship and collaboration.",
+        location: "United Kingdom",
+        website: "www.tech-sisters.com",
+        image: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        members: "1.5K+",
+        contactEmail: "info@techsisters.com",
+        foundedYear: "2018",
+        socialMedia: {
+          linkedin: "https://www.linkedin.com/company/tech-sisters-for-muslim-women-in-tech/",
+          instagram: "https://www.instagram.com/tech_sisters/"
+        }
+      },
+      {
+        id: 2,
+        name: "Her Synergy",
+        category: "LEADERSHIP",
+        description: "The premier community equipping women to navigate mid to senior level careers with confidence and connection",
+        location: "GLOBAL",
+        website: "www.hersynergytribe.com",
+        image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        members: "250+",
+        contactEmail: "hello@hersynergy.com",
+        foundedYear: "2020",
+        socialMedia: {
+          twitter: "https://x.com/hersynergy/",
+          linkedin: "https://www.linkedin.com/company/hersynergy-tribe/",
+          instagram: "https://www.instagram.com/hersynergytribe/"
+        }
+      },
+      {
+        id: 3,
+        name: "Women in Podcasting",
+        category: "PODCAST",
+        description: "A thriving community for podcasters and expert guests. Our mission is to elevate women's voices globally and within the podcasting industry.",
+        location: "GLOBAL",
+        website: "www.womenpodcasters.com",
+        image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        members: "1K+",
+        contactEmail: "info@womenpodcasters.com",
+        foundedYear: "2020",
+        socialMedia: {}
+      },
+      {
+        id: 4,
+        name: "Create Her Fest",
+        category: "TECH",
+        description: "Bridging the gender gap in tech through hands-on training in AI, AR/VR, and Blockchain.",
+        location: "GLOBAL",
+        website: "www.createherfest.com",
+        image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        members: "400+",
+        contactEmail: "info@createherfest.com",
+        foundedYear: "2020",
+        socialMedia: {}
+      },
+      {
+        id: 5,
+        name: "AUOMIE",
+        category: "BUSINESS",
+        description: "Auomie empowers women, mumpreneurs and non-binary changemakers to achieve financial clarity and grow a business that supports the life they truly want to live",
+        location: "GLOBAL",
+        website: "www.auomie.com",
+        image: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        members: "200+",
+        contactEmail: "info@auomie.com",
+        foundedYear: "2022",
+        socialMedia: {}
+      }
+    ];
+  }
+
+  async getAllCommunities(): Promise<Community[]> {
+    return await this.loadCommunities();
+  }
+
+  async getCommunityById(id: number): Promise<Community | null> {
+    const communities = await this.loadCommunities();
+    return communities.find(community => community.id === id) || null;
+  }
+
+  async searchCommunities(query: string): Promise<Community[]> {
+    const communities = await this.loadCommunities();
+    const searchTerm = query.toLowerCase();
+    
+    return communities.filter(community =>
+      community.name.toLowerCase().includes(searchTerm) ||
+      community.description.toLowerCase().includes(searchTerm) ||
+      community.category.toLowerCase().includes(searchTerm) ||
+      community.location.toLowerCase().includes(searchTerm)
+    );
+  }
+
+  async filterCommunitiesByCategory(category: string): Promise<Community[]> {
+    const communities = await this.loadCommunities();
+    return communities.filter(community => 
+      community.category.toUpperCase() === category.toUpperCase()
+    );
+  }
+
+  async filterCommunitiesByLocation(location: string): Promise<Community[]> {
+    const communities = await this.loadCommunities();
+    return communities.filter(community => {
+      if (location === "Global") {
+        return community.location.toUpperCase().includes("GLOBAL");
+      }
+      return community.location.toUpperCase().includes(location.toUpperCase());
+    });
   }
 
   async submitCommunity(submission: CommunitySubmission): Promise<boolean> {
@@ -98,18 +275,12 @@ class CommunityService {
       // Add to local array
       this.communities.push(newCommunity);
       
-      // 🎯 THIS IS WHERE WE SAVE THE DATA
+      // Save the updated communities
       const success = await this.saveCommunitiesToStorage();
       
       if (success) {
         console.log('✅ Community submitted successfully!');
         console.log('📊 Total communities now:', this.communities.length);
-        
-        // 🔍 IMPORTANT: In a real application, this would also:
-        // 1. Send POST request to your API endpoint
-        // 2. Update the actual JSON file on the server
-        // 3. Handle validation and error responses
-        // 4. Send confirmation email to the submitter
         
         return true;
       } else {
@@ -125,10 +296,10 @@ class CommunityService {
     try {
       console.log('💾 Saving communities to storage...');
       
-      // 🎯 PRIMARY SAVE: Save to localStorage (simulating JSON file update)
+      // Save to localStorage (simulating JSON file update)
       localStorage.setItem('communities-data', JSON.stringify(this.communities));
       
-      // 🎯 BACKUP SAVE: Also save a backup with timestamp
+      // Also save a backup with timestamp
       const backup = {
         timestamp: new Date().toISOString(),
         communities: this.communities,
@@ -145,13 +316,6 @@ class CommunityService {
         lastUpdated: new Date().toISOString()
       });
       
-      // 🔍 SHOW WHAT'S ACTUALLY SAVED
-      console.log('📋 Latest 3 communities in storage:');
-      const latest = this.communities.slice(-3);
-      latest.forEach((community, index) => {
-        console.log(`${index + 1}. ${community.name} (${community.category}) - ID: ${community.id}`);
-      });
-      
       return true;
     } catch (error) {
       console.error('❌ Error saving communities to storage:', error);
@@ -159,7 +323,7 @@ class CommunityService {
     }
   }
 
-  // 🔍 DEBUG METHOD: Get current storage info
+  // Debug method to get current storage info
   getStorageInfo(): {
     hasLocalData: boolean;
     totalCommunities: number;
@@ -173,9 +337,13 @@ class CommunityService {
     let lastUpdated = null;
     
     if (backup) {
-      const backupData = JSON.parse(backup);
-      totalCommunities = backupData.totalCount || 0;
-      lastUpdated = backupData.timestamp;
+      try {
+        const backupData = JSON.parse(backup);
+        totalCommunities = backupData.totalCount || 0;
+        lastUpdated = backupData.timestamp;
+      } catch (error) {
+        console.warn('Failed to parse backup data');
+      }
     }
     
     const storageSize = localData ? `${(localData.length / 1024).toFixed(2)}KB` : '0KB';
@@ -242,6 +410,28 @@ class CommunityService {
     const communities = await this.loadCommunities();
     const locations = communities.map(community => community.location);
     return [...new Set(locations)].sort();
+  }
+
+  // Method to clear all data (for testing)
+  clearAllData(): void {
+    localStorage.removeItem('communities-data');
+    localStorage.removeItem('communities-backup');
+    this.communities = [];
+    this.isLoaded = false;
+    console.log('🗑️ All community data cleared');
+  }
+
+  // Method to reset to original data
+  async resetToOriginalData(): Promise<boolean> {
+    try {
+      this.clearAllData();
+      await this.loadCommunities();
+      console.log('🔄 Reset to original data complete');
+      return true;
+    } catch (error) {
+      console.error('❌ Failed to reset to original data:', error);
+      return false;
+    }
   }
 }
 
