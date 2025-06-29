@@ -132,25 +132,6 @@ npm run build
 - **Technical Excellence**: Modern React architecture with TypeScript
 - **User Experience**: Intuitive design with micro-interactions
 
-### Impact
-- **Social Good**: Addresses real problem of women's professional isolation
-- **Scalability**: Architecture supports thousands of communities
-- **Global Reach**: Designed for international community discovery
-
-### Technical Achievement
-- **Full-Stack Simulation**: Complete CRUD operations with localStorage
-- **Responsive Design**: Works seamlessly across all devices
-- **Performance**: Fast loading with efficient data management
-- **Accessibility**: Semantic HTML with keyboard navigation support
-
-## 📊 Project Statistics
-
-- **Components**: 25+ reusable React components
-- **Pages**: 4 main application pages
-- **Communities**: 1000+ in initial dataset
-- **Categories**: 14 different community types
-- **Locations**: Global coverage across 6 continents
-
 ## 🌍 Community Categories
 
 - **TECH**: Technology and software development
@@ -174,11 +155,6 @@ npm run build
 
 This project was built for the Bolt Hackathon 2025. For questions or collaboration opportunities, please reach out through the hackathon platform.
 
-## 📄 License
-
-This project is created for the Bolt Hackathon 2025. All rights reserved.
-
----
 
 ## 🎉 Hackathon Submission Details
 
