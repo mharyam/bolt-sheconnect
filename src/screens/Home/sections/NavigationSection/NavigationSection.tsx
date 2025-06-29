@@ -23,31 +23,31 @@ export const NavigationSection = (): JSX.Element => {
       <div className="max-w-[1360px] mx-auto h-full flex items-center justify-between px-10">
         {/* Left side with Bolt logo and navigation */}
         <div className="flex items-center gap-6">
-          {/* Bolt Logo */}
+          {/* Bolt Logo - Same size as footer */}
           <a 
             href="https://bolt.new" 
             target="_blank" 
             rel="noopener noreferrer"
             className="block transform hover:scale-105 transition-transform duration-300"
           >
-            <div className="relative w-12 h-12 group">
-              <div className="absolute inset-0 rounded-full bg-white border-2 border-black flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300">
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 48 48">
+            <div className="relative w-20 h-20 group">
+              <div className="absolute inset-0 rounded-full bg-white border-2 border-black flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 80 80">
                   <defs>
                     <path
                       id="nav-circle-path"
-                      d="M 24, 24 m -18, 0 a 18,18 0 1,1 36,0 a 18,18 0 1,1 -36,0"
+                      d="M 40, 40 m -30, 0 a 30,30 0 1,1 60,0 a 30,30 0 1,1 -60,0"
                     />
                   </defs>
-                  <text className="text-[4px] font-bold fill-black tracking-wider">
+                  <text className="text-[6px] font-bold fill-black tracking-wider">
                     <textPath href="#nav-circle-path" startOffset="0%">
-                      BOLT.NEW • BOLT.NEW • BOLT.NEW • 
+                      POWERED BY BOLT.NEW • POWERED BY BOLT.NEW • 
                     </textPath>
                   </text>
                 </svg>
                 
-                <div className="relative z-10 w-5 h-5 bg-black rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-sm italic">b</span>
+                <div className="relative z-10 w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold text-lg italic">b</span>
                 </div>
               </div>
             </div>
